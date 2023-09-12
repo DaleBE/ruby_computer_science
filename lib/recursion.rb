@@ -12,7 +12,7 @@ def merge_sort(array)
 
   middle = (array.length / 2).round
   left_side = array[0...middle]
-  right_side = array[middle..-1]
+  right_side = array[middle..]
 
   merge(merge_sort(left_side), merge_sort(right_side))
 end
