@@ -20,9 +20,7 @@ end
 def merge(left, right)
   sorted_array = []
 
-  until left.empty? || right.empty?
-    left.first < right.first ? sorted_array << left.shift : sorted_array << right.shift
-  end
+  sorted_array << (left.first < right.first ? left.shift : right.shift) until left.empty? || right.empty?
   sorted_array + left + right
 end
 

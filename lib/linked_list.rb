@@ -20,16 +20,32 @@ class LinkedList
   end
 
   # adds a new node containing value to the start of the list
-  def prepend(value); end
+  def prepend(value)
+    if @list_head.nil?
+      @list_head = Node.new(value, nil)
+    else
+      first_node = Node.new(value, @list_head)
+
+      @list_head = first_node
+    end
+  end
 
   # returns the total number of nodes in the list
   def size; end
 
   # returns the first node in the list
-  def head; end
+  def head
+    @list_head
+  end
 
   # returns the last node in the list
-  def tail; end
+  def tail
+    last_node = @list_head
+
+    last_node = last_node.next_node until last_node.next_node.nil?
+
+    last_node
+  end
 
   # returns the node at the given (index)
   def at(index); end
@@ -61,5 +77,7 @@ end
 new_list = LinkedList.new
 new_list.append(45)
 new_list.append(13)
-new_list.append(64)
+new_list.prepend(1)
+new_list.prepend(23)
 p new_list
+puts new_list.tail
