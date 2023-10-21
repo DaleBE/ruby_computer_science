@@ -1,7 +1,9 @@
+# a recursive method to get a Fibonacci number
 def fib(number)
   number < 2 ? number : fib(number - 1) + fib(number - 2)
 end
 
+# a method that maps the Fibonacci number to an array
 def fibs(number)
   (0..number).map { |num| fib(num) }
 end
