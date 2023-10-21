@@ -67,7 +67,23 @@ class LinkedList
   def pop; end
 
   # returns true if the passed in value is in the list and otherwise returns false.
-  def contains?(value); end
+  def contains?(value)
+    result = false
+
+    return result if @list_head.nil?
+
+    node_to_check = @list_head
+
+    loop do
+      result = true if node_to_check.value == value
+
+      break if node_to_check.next_node.nil?
+
+      node_to_check = node_to_check.next_node
+    end
+
+    result
+  end
 
   # returns the index of the node containing value, or nil if not found.
   def find(value); end
@@ -90,13 +106,5 @@ end
 new_list = LinkedList.new
 new_list.append(13)
 new_list.prepend(23)
-puts '-----------'
-p new_list
-puts new_list.tail
-p new_list.size
-puts new_list.head
-puts '---------'
-another_list = LinkedList.new
-# another_list.prepend(56)
-p another_list.size
-puts another_list.head
+p new_list.contains?(13)
+# p new_list
