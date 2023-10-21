@@ -32,19 +32,17 @@ class LinkedList
 
   # returns the total number of nodes in the list
   def size
-    count = 0
+    return 0 if @list_head.nil?
 
-    if @list_head.nil?
-      0
-    else
+    count = 1
+
+    last_node = @list_head
+
+    until last_node.next_node.nil?
       count += 1
-      last_node = @list_head
-
-      until last_node.next_node.nil?
-        count += 1
-        last_node = last_node.next_node
-      end
+      last_node = last_node.next_node
     end
+
     count
   end
 
@@ -90,14 +88,15 @@ class LinkedList
 end
 
 new_list = LinkedList.new
-new_list.append(45)
 new_list.append(13)
-new_list.prepend(1)
 new_list.prepend(23)
 puts '-----------'
 p new_list
-# puts new_list.tail
+puts new_list.tail
 p new_list.size
+puts new_list.head
 puts '---------'
-p another_list = LinkedList.new
+another_list = LinkedList.new
+# another_list.prepend(56)
 p another_list.size
+puts another_list.head
