@@ -64,7 +64,22 @@ class LinkedList
   def at(index); end
 
   # removes the last element from the list
-  def pop; end
+  def pop
+    return @list_head = nil if @list_head.next_node.nil?
+
+    second_last = @list_head
+    last = @list_head.next_node
+
+    loop do
+      break if last.next_node.nil?
+
+      second_last = last
+
+      last = last.next_node
+    end
+
+    second_last.next_node = nil
+  end
 
   # returns true if the passed in value is in the list and otherwise returns false.
   def contains?(value)
@@ -106,5 +121,7 @@ end
 new_list = LinkedList.new
 new_list.append(13)
 new_list.prepend(23)
-p new_list.contains?(13)
-# p new_list
+# p new_list.contains?(13)
+p new_list
+new_list.pop
+p new_list
