@@ -1,4 +1,4 @@
-# Container for all the Nodes
+# Class for all the Nodes chained together
 class LinkedList
   attr_accessor :list_head
 
@@ -61,7 +61,19 @@ class LinkedList
   end
 
   # returns the node at the given (index)
-  def at(index); end
+  def at(index)
+    return 'Error: no such index' if index > size - 1
+
+    head if index.zero?
+
+    node_at_index = @list_head
+
+    index.times do
+      node_at_index = node_at_index.next_node
+    end
+
+    node_at_index
+  end
 
   # removes the last element from the list
   def pop
@@ -101,7 +113,21 @@ class LinkedList
   end
 
   # returns the index of the node containing value, or nil if not found.
-  def find(value); end
+  def find(value)
+    index = 0
+    node_to_check = @list_head
+
+    return 'Value not found' unless contains?(value)
+
+    loop do
+      break if node_to_check.value == value
+
+      index += 1
+
+      node_to_check = node_to_check.next_node
+    end
+    index
+  end
 
   # represent your LinkedList objects as strings, so you can print them out and preview them in the console.
   # The format should be: ( value ) -> ( value ) -> ( value ) -> nil
@@ -137,7 +163,10 @@ end
 new_list = LinkedList.new
 new_list.append(13)
 new_list.prepend(23)
+new_list.append(89)
 # p new_list.contains?(13)
 p new_list
-new_list.pop
-puts new_list.to_s
+# new_list.pop
+p new_list.to_s
+p new_list.find(89)
+puts new_list.at(7)
