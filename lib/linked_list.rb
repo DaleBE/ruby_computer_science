@@ -105,7 +105,23 @@ class LinkedList
 
   # represent your LinkedList objects as strings, so you can print them out and preview them in the console.
   # The format should be: ( value ) -> ( value ) -> ( value ) -> nil
-  def to_s; end
+  def to_s
+    return 'nil' if @list_head.nil?
+
+    string = 'head -> '
+    node_to_print = @list_head
+
+    loop do
+      string << "(#{node_to_print.value}) -> "
+
+      break if node_to_print.next_node.nil?
+
+      node_to_print = node_to_print.next_node
+    end
+
+    string << 'nil'
+    string
+  end
 
   # Class for each node of the LinkedList
   class Node
@@ -124,4 +140,4 @@ new_list.prepend(23)
 # p new_list.contains?(13)
 p new_list
 new_list.pop
-p new_list
+puts new_list.to_s
